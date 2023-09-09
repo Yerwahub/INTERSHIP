@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 import datetime
-import pytz
 import random
 
 app = FastAPI()
@@ -14,7 +13,7 @@ weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "
 
 @app.get("/api")
 async def get_data(slack_name: str = NAME, track: str = TRACK, status_code: int = STATUS_CODE):
-    current_time_utc = datetime.datetime.now(pytz.utc)
+    current_time_utc = datetime.datetime.now
     offset_minutes = random.randint(-2, 2)
     current_time_with_offset = current_time_utc + datetime.timedelta(minutes=offset_minutes)
     current_time_with_offset_str = current_time_with_offset.strftime("%Y-%m-%dT%H:%M:%SZ")
