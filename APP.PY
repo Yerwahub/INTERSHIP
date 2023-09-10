@@ -10,7 +10,6 @@ class ResponseData(BaseModel):
 STATUS_CODE = 200
 NAME = "ahmed_bukar"
 TRACK = "backend"
-
 GITHUB_REPO_URL = "https://github.com/Yerwahub/INTERSHIP"
 GITHUB_FILE_URL = "https://github.com/Yerwahub/INTERSHIP/blob/main/task1/APP.PY"
 weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -21,7 +20,7 @@ async def get_data(slack_name: str = "ahmed_bukar", track: str = "backend", stat
     offset_minutes = random.randint(-2, 2)
     current_time_with_offset = current_time_utc + datetime.timedelta(minutes=offset_minutes)
     current_time_with_offset_str = current_time_with_offset.strftime("%Y-%m-%dT%H:%M:%SZ")
-    current_day = weekday[datetime.datetime.today().weekday()]
+   
 
     response_data = ResponseData {
         "slack_name": slack_name,
