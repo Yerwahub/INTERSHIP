@@ -14,7 +14,7 @@ class ResponseData(BaseModel):
     status_code = 200
 
 @app.get("/api", response_model=ResponseData)
-async def get_data(slack_name: str = "ahmed_bukar", track: str = "backend", status_code: int = 200):
+async def get_data(slack_name: str = None, track: str = None, status_code: int = None):
     current_time_utc = datetime.datetime.now(pytz.utc)
     offset_minutes = random.randint(-2, 2)
     current_time_with_offset = current_time_utc + datetime.timedelta(minutes=offset_minutes)
