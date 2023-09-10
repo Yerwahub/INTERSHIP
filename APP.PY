@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import datetime
 import pytz
 import random
@@ -7,14 +7,22 @@ import random
 app = FastAPI()
 
 class ResponseData(BaseModel):
-    slack_name = "ahmed_bukar"
-    track = "backend"
-    github_file_url = "https://github.com/Yerwahub/INTERSHIP"
-    github_repo_url = "https://github.com/Yerwahub/INTERSHIP/blob/main/task1/APP.PY"
-    status_code = 200
+    slack_name: str = Field(default="ahmed_bukar")
+    track: str = Field(default="backend")
+    github_file_url: str = "https://github.com/Yerwahub/INTERSHIP"
+    github_repo_url: str = "https://github.com/Yerwahub/INTERSHIP/blob/main/task1/APP.PY" 
+    status_code: int = Field(default=200)
 
 @app.get("/api", response_model=ResponseData)
-async def get_data(slack_name: str = None, track: str = None, status_code: int = None):
+async def get_data(
+    slack_name: str = None,
+    track: str = None,
+    status_code: int = None
+):
+    slack_name = slack_name or "ahmed_bukar"
+    track = track or "backend"
+    status_code = status_code or 200
+
     current_time_utc = datetime.datetime.now(pytz.utc)
     offset_minutes = random.randint(-2, 2)
     current_time_with_offset = current_time_utc + datetime.timedelta(minutes=offset_minutes)
