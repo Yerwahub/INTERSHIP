@@ -8,8 +8,6 @@ app = FastAPI()
 
 class ResponseData(BaseModel):
     slack_name = "ahmed_bukar"
-    current_day = datetime.datetime.today().weekday
-    utc_time = datetime.datetime.now(pytz.utc)
     track = "backend"
     github_file_url = "https://github.com/Yerwahub/INTERSHIP"
     github_repo_url = "https://github.com/Yerwahub/INTERSHIP/blob/main/task1/APP.PY"
