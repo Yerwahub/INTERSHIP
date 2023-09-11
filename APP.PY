@@ -7,12 +7,11 @@ import random
 app = FastAPI()
 
 class ResponseData(BaseModel):
-    slack_name: str = Field(default="ahmed_bukar")
-    track: str = Field(default="backend")
-    github_file_url: str = "https://github.com/Yerwahub/INTERSHIP"
-    github_repo_url: str = "https://github.com/Yerwahub/INTERSHIP/blob/main/task1/APP.PY" 
-    status_code: int = Field(default=200)
-
+    slack_name = str = "ahmed_bukar"
+    track = str = "backend"
+    github_file_url = str = "https://github.com/Yerwahub/INTERSHIP"
+    github_repo_url = str = "https://github.com/Yerwahub/INTERSHIP/blob/main/task1/APP.PY"
+    status_code = int = 200
 @app.get("/api", response_model=ResponseData)
 async def get_data(
     slack_name: str = None,
@@ -24,7 +23,7 @@ async def get_data(
     status_code = status_code or 200
 
     current_time_utc = datetime.datetime.now(pytz.utc)
-    offset_minutes = random.randint(-2, 2)
+    offset_minutes = datetime.timedelta(minutes=random.randint(-2, 2))
     current_time_with_offset = current_time_utc + datetime.timedelta(minutes=offset_minutes)
     current_time_with_offset_str = current_time_with_offset.strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -44,4 +43,5 @@ async def get_data(
         status_code=status_code
     )
 
-    return response_data
+    return response_data 
+
